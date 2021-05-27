@@ -90,7 +90,7 @@ root.resizable(False, False)
 root.title("YouTube Video Downloader by Hirusha Pramuditha")
 root.config(background="#073b4c")
 root.iconbitmap(
-    r'C:\Users\Hirusha Pramuditha\Documents\Python Projects\YouTube Downloader\icon.ico')
+    'C:\\Users\\Hirusha Pramuditha\\Python-Projects\\YouTube-Downloader\\icon.ico')
 
 video_Link = StringVar()
 download_Path = StringVar()
