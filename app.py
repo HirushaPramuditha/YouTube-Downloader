@@ -4,97 +4,95 @@ from pytube import YouTube
 from tkinter import messagebox, filedialog
 
 
-def Widgets():
+def SetWidgets():
     link_label = Label(root,
-                       text="YouTube link  :",
+                       text=" Video URL       :",
                        bg="#ffd166")
     link_label.grid(row=1,
                     column=0,
                     pady=5,
                     padx=5)
 
-    root.linkText = Entry(root,
-                          width=55,
-                          textvariable=video_Link)
-    root.linkText.grid(row=1,
-                       column=1,
-                       pady=5,
-                       padx=5,
-                       columnspan=2)
+    root.link_text = Entry(root,
+                           width=55,
+                           textvariable=video_Link)
+    root.link_text.grid(row=1,
+                        column=1,
+                        pady=5,
+                        padx=5,
+                        columnspan=2)
 
-    destination_label = Label(root,
-                              text="Destination    :",
-                              bg="#ffd166")
-    destination_label.grid(row=2,
-                           column=0,
-                           pady=5,
-                           padx=5)
+    location_label = Label(root,
+                           text=" Location         :",
+                           bg="#ffd166")
+    location_label.grid(row=2,
+                        column=0,
+                        pady=5,
+                        padx=5)
 
-    root.destinationText = Entry(root,
-                                 width=40,
-                                 textvariable=download_Path)
-    root.destinationText.grid(row=2,
-                              column=1,
-                              pady=5,
-                              padx=5)
+    root.location_text = Entry(root,
+                               width=40,
+                               textvariable=download_path)
+    root.location_text.grid(row=2,
+                            column=1,
+                            pady=5,
+                            padx=5)
 
-    browse_B = Button(root,
-                      text="Browse",
-                      command=Browse,
-                      width=10,
-                      bg="#05E8E0")
-    browse_B.grid(row=2,
-                  column=2,
-                  pady=1,
-                  padx=1)
+    browse_btn = Button(root,
+                        text="Browse",
+                        command=Browse,
+                        width=10,
+                        bg="#e1e1e1")
+    browse_btn.grid(row=2,
+                    column=2,
+                    pady=1,
+                    padx=1)
 
-    Download_B = Button(root,
-                        text="Download",
-                        command=Download,
-                        width=20,
-                        bg="#05E8E0")
-    Download_B.grid(row=3,
-                    column=1,
-                    pady=3,
-                    padx=3)
+    download_btn = Button(root,
+                          text="Download",
+                          command=Download,
+                          width=20,
+                          bg="#e74c3c",
+                          fg="#ffffff")
+    download_btn.grid(row=3,
+                      column=1,
+                      pady=3,
+                      padx=3)
 
 
 def Browse():
-    download_Directory = filedialog.askdirectory(
+    download_directory = filedialog.askdirectory(
         initialdir="YOUR DIRECTORY PATH")
 
-    download_Path.set(download_Directory)
+    download_path.set(download_directory)
 
 
 def Download():
 
-    Youtube_link = video_Link.get()
+    youtube_link = video_Link.get()
+    download_folder = download_path.get()
 
-    download_Folder = download_Path.get()
+    get_video = YouTube(youtube_link)
+    video = get_video.streams.get_highest_resolution()
 
-    getVideo = YouTube(Youtube_link)
+    video.download(download_folder)
 
-    videoStream = getVideo.streams.first()
-
-    videoStream.download(download_Folder)
-
-    messagebox.showinfo("SUCCESSFULLY",
-                        "DOWNLOADED AND SAVED IN\n"
-                        + download_Folder)
+    messagebox.showinfo("Success!",
+                        "Downloaded and saved in\n"
+                        + download_folder)
 
 
 root = tk.Tk()
 
 root.geometry("600x200")
 root.resizable(False, False)
-root.title("YouTube Video Downloader by Hirusha Pramuditha")
-root.config(background="#073b4c")
-root.iconbitmap(
-    'C:\\Users\\Hirusha Pramuditha\\Python-Projects\\YouTube-Downloader\\icon.ico')
+root.title("YouTube Downloader")
+root.config(background="#ecf0f1")
+root.iconbitmap('.\\icon.ico')
 
 video_Link = StringVar()
-download_Path = StringVar()
+download_path = StringVar()
 
-Widgets()
+SetWidgets()
 
 root.mainloop()
