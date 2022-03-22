@@ -14,4 +14,4 @@ Simple YouTube video downloader written in Python. (GUI)
 > Currently, YouTube Downloader is supported on windows 10 only
 
 # Pre-Requisites
-* [pytube - 10.8.2] (https://pytube.io/en/latest/user/install.html#:~:text=Edit%20on%20GitHub-,Installation%20of%20pytube,-This%20guide%20assumes)
+* [pytube - 10.8.2](https://pytube.io/en/latest/user/install.html#:~:text=Edit%20on%20GitHub-,Installation%20of%20pytube,-This%20guide%20assumes)
